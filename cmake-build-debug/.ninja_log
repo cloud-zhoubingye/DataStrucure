@@ -1,0 +1,6 @@
+# ninja log v5
+2	560	7191282795342326	CMakeFiles/DataStructure.dir/proj1/CalculatorMain.cpp.obj	12129cdfb72b8ef1
+1	91	7193043554882600	build.ninja	45144201dc7c1408
+1164	1371	7193042652683165	DataStructure.exe	29127968b3f8b01e
+2	323	7191703841156895	CMakeFiles/DataStructure.dir/proj2/TextEditor.cpp.obj	fef60b4d7a7da563
+1	1163	7193042650632976	CMakeFiles/DataStructure.dir/proj1/HYL_Calculator.cpp.obj	f321f846be420aed
