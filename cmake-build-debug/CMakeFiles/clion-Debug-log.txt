@@ -1,4 +1,0 @@
-"D:\MyApplication\Clion\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=D:/MyApplication/Clion/CLion 2022.3.2/bin/ninja/win/x64/ninja.exe" -G Ninja -S D:\MyProgramme\C++_Programming\DataStructure -B D:\MyProgramme\C++_Programming\DataStructure\cmake-build-debug
--- Configuring done (0.1s)
--- Generating done (0.0s)
--- Build files have been written to: D:/MyProgramme/C++_Programming/DataStructure/cmake-build-debug
