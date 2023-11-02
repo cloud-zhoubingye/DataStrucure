@@ -130,19 +130,19 @@ private:
         }
     }
     void commandRead(){
+        fs=fstream(path);
         cout<<"Read From File\n";
         fs.open(path);
         if (path.empty())
             throw runtime_error("Open Empty File");
         if (!fs.is_open())
             throw runtime_error("Cannot Open File");
-        text.clear();
         string line;
         while (getline(fs,line)){
             text.push_back(line);
         }
         currentLine=0;
-        fs.close();
+//        fs.close();
         cout<<"Read OK !\n";
     }
     void commandWrite(){
@@ -221,10 +221,12 @@ private:
         }
         string line=*line_iter;
         cout<<"Before Change :  "<<line<<endl;
-        string pattern_str;
+        string pattern_str,after_string;
         cout<<"Enter pattern string :\n  > ";
         cin >> pattern_str;
-        line.replace(line.find(pattern_str),pattern_str.size(),pattern_str);
+        cout<<"Enter after_string :\n  > ";
+        cin >> after_string;
+        line.replace(line.find(pattern_str),pattern_str.size(),after_string);
         cout<<"After Change :  "<<line<<endl;
         *line_iter=line;
         isSaved= false;
@@ -387,8 +389,8 @@ private:
 public:
     void init(){
         cout<<"---------------------------------------\n"
-                "WELCOME !\n"
-                "---------------------------------------\n";
+              "WELCOME !\n"
+              "---------------------------------------\n";
         cout<<"File path\n  > ";
         cin>>path;
         if (!cin)
