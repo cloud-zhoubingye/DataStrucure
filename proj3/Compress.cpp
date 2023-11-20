@@ -1,14 +1,10 @@
 //
 // Created by Zhou on 13/11/2023.
 //
-#include <map>
-#include <iostream>
-#include <fstream>
-#include <algorithm>
+#include "Huffman.h"
 /**
  * Compress
  */
-using namespace std;
 map<char,int> CountFrequency(string path){
     fstream fs{path};
     if (!fs) throw runtime_error(path+"\nFile Open Failed !");
@@ -21,7 +17,11 @@ map<char,int> CountFrequency(string path){
 }
 map<char,string> ConstructHuffmanCode(map<char,int>& frequency){
     map<char,string>dict;
-
+    HuffTree* tree= CreateHuffmanTree(frequency);
+    int i=1;
+    for (auto iter:frequency) {
+        dict[iter.first]= CreateHuffmanCode(tree, i);
+    }
     return dict;
 }
 void SaveHuffmanCode(map<char,string>dict,string path){
