@@ -4,7 +4,7 @@
 using namespace std;
 template<class T>class LinkStack{//链栈 (双向链表实现） 
 public:	
-	struct Node{T data;Node* next;Node* pre;};	
+	struct Node{T _data;Node* next;Node* pre;};
 	Node* head;//头指针 
 	Node* tear;//尾指针 
 	int size;//栈元素个数 
@@ -20,10 +20,10 @@ public:
 		tear->next=new Node;
 		tear->next->pre=tear;
 		tear=tear->next;
-		tear->data=x;
+		tear->_data=x;
 		tear->next=NULL;
 	}
-	T top(){return tear->data;}//
+	T top(){return tear->_data;}//
 	void pop(){//
 		if(size<=0) return; //无元素不弹出 
 		tear=tear->pre;
@@ -52,14 +52,14 @@ public:
 		LinkStack<Node>::Node* p=exp.head->next;int num=0,num2=0;
 		while(p!=NULL) 
 		{
-			if(IsOp(p->data.op)) num2--;
-			if(p->data.op==0) num2++;
-			if(p->data.op=='(') num++;
-			if(p->data.op==')') num--;
+			if(IsOp(p->_data.op)) num2--;
+			if(p->_data.op==0) num2++;
+			if(p->_data.op=='(') num++;
+			if(p->_data.op==')') num--;
 			if(p->next!=NULL)
 			{
-				if(p->data.op) if(IsOp(p->data.op)&&IsOp(p->next->data.op)) ER=1;
-				if(p->data.op==0&&p->next->data.op==0) ER=1;
+				if(p->_data.op) if(IsOp(p->_data.op)&&IsOp(p->next->_data.op)) ER=1;
+				if(p->_data.op==0&&p->next->_data.op==0) ER=1;
 			}
 			if(num<0) ER=1;
 			p=p->next;
@@ -73,7 +73,7 @@ public:
 			if(s[i]==' '){i++;continue;}//忽略空格 
 			else if(IsOp(s[i])||IsBa(s[i]))//操作符 
 			{
-				if((s[i]=='+'||s[i]=='-')&&(exp.empty()||exp.tear->data.op=='(')) exp.insert({0,0.0});//+-号前为（添加辅助操作数 0
+				if((s[i]=='+'||s[i]=='-')&&(exp.empty()||exp.tear->_data.op=='(')) exp.insert({0,0.0});//+-号前为（添加辅助操作数 0
 				exp.insert({s[i],0.0});
 				if(s[i]=='!') exp.insert({0,0.0});//阶乘后添加辅助操作数 0
 				i++;continue;
@@ -102,22 +102,22 @@ public:
 		LinkStack<Expression::Node>::Node* p=e.exp.head->next;
 		while(p!=NULL)
 		{
-			if(p->data.op==0) {//操作数直接入栈 
-				OPND.insert(p->data.x);	
+			if(p->_data.op==0) {//操作数直接入栈
+				OPND.insert(p->_data.x);
 				p=p->next;
 				continue;
 			}
-			if(p->data.op==')'){
+			if(p->_data.op==')'){
 				while(OPTR.top()!='(') Step_Cla();
 				OPTR.pop();p=p->next;
 				continue;
 			} 
-			while(!OPTR.empty()&&isp(OPTR.top())<icp(p->data.op)) Step_Cla();
-			OPTR.insert(p->data.op);
+			while(!OPTR.empty()&&isp(OPTR.top())<icp(p->_data.op)) Step_Cla();
+			OPTR.insert(p->_data.op);
 			p=p->next;
 		}
 		while(!OPTR.empty()) Step_Cla();
-		printf("%g\n",OPND.head->next->data);
+		printf("%g\n",OPND.head->next->_data);
 	}                
 private:
 	LinkStack<double> OPND;       //操作数栈 

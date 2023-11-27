@@ -67,7 +67,7 @@ private:
     stack<list<string>> undoStack;
     stack<list<string>> redoStack;
 
-    void save(){
+    void Save(){
         fs.open(path);
         if (!fs.is_open())
             throw runtime_error("Cannot Open File");
@@ -147,7 +147,7 @@ private:
     }
     void commandWrite(){
         cout<<"Write To File\n";
-        save();
+        Save();
         cout<<"Write OK !\n";
     }
     void commandInsert(){
@@ -170,7 +170,7 @@ private:
         currentLine=line_n+1;
         isSaved= false;
         undoStack.push(text);
-        if(automaticSaving) save();
+        if(automaticSaving) Save();
         cout<<"Insert OK !\n";
     }
     void commandDelete(){
@@ -188,7 +188,7 @@ private:
         currentLine=line_n-1;
         isSaved= false;
         undoStack.push(text);
-        if(automaticSaving) save();
+        if(automaticSaving) Save();
         cout<<"Delete OK !\n";
     }
     void commandFind(){
@@ -231,12 +231,12 @@ private:
         *line_iter=line;
         isSaved= false;
         undoStack.push(text);
-        if(automaticSaving) save();
+        if(automaticSaving) Save();
         cout<<"Change OK !\n";
     }
     void commandQuit(){
         cout<<"Quit Programme\n";
-        if(automaticSaving) save();
+        if(automaticSaving) Save();
         if (!isSaved&&!automaticSaving){
             cout<<"Not Saved ! Are you sure to quit ?  y/n\n  > ";
             char ch=0;
@@ -352,7 +352,7 @@ private:
             text=undoStack.top();
             undoStack.pop();
             isSaved= false;
-            if(automaticSaving) save();
+            if(automaticSaving) Save();
         }
         else if (tolower(ch)=='n'){
             cout<<"Stop Undo !\n";
@@ -376,7 +376,7 @@ private:
             text=redoStack.top();
             redoStack.pop();
             isSaved= false;
-            if(automaticSaving) save();
+            if(automaticSaving) Save();
         }
         else if (tolower(ch)=='n'){
             cout<<"Stop Redo !\n";
